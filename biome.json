@@ -1,0 +1,42 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "files": { "ignore": ["node_modules", "dist", "docs", "*.md"] },
+  "formatter": { "enabled": true, "indentStyle": "space", "indentWidth": 2, "lineWidth": 110 },
+  "javascript": {
+    "formatter": { "quoteStyle": "single", "trailingCommas": "all", "semicolons": "always" },
+    "parser": { "unsafeParameterDecoratorsEnabled": true }
+  },
+  "organizeImports": { "enabled": true },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": { "useImportType": "off", "noNonNullAssertion": "error", "noParameterAssign": "error" },
+      "suspicious": { "noExplicitAny": "error" },
+      "complexity": { "noStaticOnlyClass": "off" }
+    }
+  },
+  "overrides": [
+    {
+      "include": ["src/**/domain/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "@nestjs/common": "Domain must not depend on NestJS",
+                  "@nestjs/core": "Domain must not depend on NestJS",
+                  "@mikro-orm/core": "Domain must not depend on the ORM",
+                  "@mikro-orm/postgresql": "Domain must not depend on the ORM",
+                  "@aws-sdk/client-sqs": "Domain must not depend on AWS SDK"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

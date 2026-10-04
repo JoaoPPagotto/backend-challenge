@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+*.log
+coverage
+migrations/.snapshot-*.json
+
+# Agent instructions (local only)
+CLAUDE.md
